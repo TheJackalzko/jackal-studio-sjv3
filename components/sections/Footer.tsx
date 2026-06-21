@@ -10,7 +10,7 @@ export function Footer() {
             Jackal Studio
           </p>
           <p className="font-mono text-[11px] text-gris tracking-wider">
-            Mâcon / Lyon, France
+            Europe, France
           </p>
           <a
             href="mailto:admin@studiojackal.com"

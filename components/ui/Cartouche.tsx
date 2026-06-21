@@ -4,7 +4,7 @@ const YEAR = new Date().getFullYear()
 
 const FIELDS = [
   ['PROJET', 'JACKAL STUDIO'],
-  ['STUDIO', 'MÂCON, FR'],
+  ['STUDIO', 'EUROPE, FR'],
   ['ÉCH.', '1:1'],
   ['DATE', YEAR.toString()],
   ['IND.', 'A'],
