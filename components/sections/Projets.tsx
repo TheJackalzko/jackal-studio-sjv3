@@ -8,11 +8,11 @@ interface ProjetCardProps {
   fiches: string[]
   resultat: string
   description: string
-  statut?: 'livré' | 'en cours'
+  url?: string
   index: number
 }
 
-function ProjetCard({ nom, fiches, resultat, description, statut = 'livré', index }: ProjetCardProps) {
+function ProjetCard({ nom, fiches, resultat, description, url, index }: ProjetCardProps) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 10 }}
@@ -29,11 +29,6 @@ function ProjetCard({ nom, fiches, resultat, description, statut = 'livré', ind
               {f}
             </span>
           ))}
-          {statut === 'en cours' && (
-            <span className="font-mono text-[10px] text-gris tracking-[0.2em] border border-gris/30 px-1.5 py-0.5">
-              EN COURS
-            </span>
-          )}
         </div>
 
         {/* Name */}
@@ -42,16 +37,29 @@ function ProjetCard({ nom, fiches, resultat, description, statut = 'livré', ind
         </h3>
 
         {/* Description */}
-        <p className="font-sans text-sm text-gris leading-relaxed max-w-md">{description}</p>
+        <p className="font-sans text-sm text-gris leading-relaxed max-w-md mb-4">{description}</p>
+
+        {/* Link */}
+        {url && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-[11px] text-orange tracking-[0.15em] uppercase hover:gap-3 transition-all duration-150"
+          >
+            Voir le projet
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2 10L10 2M10 2H5M10 2v5" />
+            </svg>
+          </a>
+        )}
       </div>
 
       {/* Result */}
-      {statut === 'livré' && (
-        <div className="md:text-right">
-          <p className="font-mono text-xs text-gris tracking-wider mb-1 uppercase">Résultat</p>
-          <p className="font-mono text-sm text-encre">{resultat}</p>
-        </div>
-      )}
+      <div className="md:text-right flex-shrink-0">
+        <p className="font-mono text-xs text-gris tracking-wider mb-1 uppercase">Résultat</p>
+        <p className="font-mono text-sm text-encre">{resultat}</p>
+      </div>
     </motion.article>
   )
 }
@@ -62,21 +70,21 @@ const PROJETS: Omit<ProjetCardProps, 'index'>[] = [
     fiches: ['FICHE 01', 'FICHE 02'],
     description: "Application mobile et interface web pour la gestion d'une activité professionnelle nomade. Architecture React Native / Next.js, synchronisation temps réel.",
     resultat: 'Déployé · iOS + Android',
-    statut: 'livré',
+    url: '#',
   },
   {
     nom: 'Phéniiks Système',
     fiches: ['FICHE 02'],
     description: 'Outil interne de pilotage opérationnel — tableaux de bord, gestion des flux, reporting automatisé. Développé avec Next.js et PostgreSQL.',
     resultat: 'Adoption interne totale',
-    statut: 'livré',
+    url: '#',
   },
   {
     nom: 'Z Forme',
     fiches: ['FICHE 01'],
     description: 'Application mobile de suivi et de gestion. React Native / Expo, synchronisation cloud, interface pensée pour un usage quotidien.',
-    resultat: '—',
-    statut: 'en cours',
+    resultat: 'Déployé · iOS + Android',
+    url: '#',
   },
 ]
 
